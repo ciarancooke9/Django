@@ -5,6 +5,10 @@ from . models import Page
 def index(request, pagename=''):
 	pagename = '/' + pagename
 	pg = Page.objects.get(permalink=pagename)
-	return HttpResponse(pg.bodytext)
+	context = {
+		'title': pg.title,
+    	'context': pg.bodytext
+	}
+	return render(request, 'base.html', context)
 
 # Create your views here.
