@@ -20,20 +20,22 @@ class Genre(models.Model):
     def __str__(self):
         return self.genre
 
+class Actor(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
 class Show(models.Model):
     title = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
     genre = models.ManyToManyField(Genre, related_name='genres', help_text='Select a genre for this show')
-    actor = models.ManyToManyField(Genre, related_name='actors', help_text='Select actors starring in this show this show')
+    actor = models.ManyToManyField(Actor, related_name='actors', help_text='Select actors starring in this show this show')
     release = models.IntegerField(blank=False, default=datetime.datetime.now().year)
     rating = models.FloatField()
     seasons = models.IntegerField()
     def __str__(self):
         return self.title
 
-class Actor(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
 
