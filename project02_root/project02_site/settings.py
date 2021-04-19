@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
     'containers.computing.dcu.ie'
     ]
 USE_X_FORWARDED_HOST = True
-FORCE_SCRIPT_NAME = '/mcgettk3'
+FORCE_SCRIPT_NAME = '/cookec9'
 
 # Application definition
 

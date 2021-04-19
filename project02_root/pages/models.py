@@ -1,6 +1,4 @@
 from django.db import models
-
-# Create your models here.
 import datetime
 
 class Page(models.Model):
@@ -12,3 +10,30 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+def get_years(initial=1970):
+    return [(year, year) for year in range(datetime.datetime.now().year, initial, -1)]
+
+class Genre(models.Model):
+    genre = models.CharField(max_length=200, help_text='Enter a show genre (e.g. Science Fiction)')
+
+    def __str__(self):
+        return self.genre
+
+class Show(models.Model):
+    title = models.CharField(max_length=100)
+    director = models.CharField(max_length=100)
+    genre = models.ManyToManyField(Genre, related_name='genres', help_text='Select a genre for this show')
+    actor = models.ManyToManyField(Genre, related_name='actors', help_text='Select actors starring in this show this show')
+    release = models.IntegerField(blank=False, default=datetime.datetime.now().year)
+    rating = models.FloatField()
+    seasons = models.IntegerField()
+    def __str__(self):
+        return self.title
+
+class Actor(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
