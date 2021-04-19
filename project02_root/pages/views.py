@@ -7,8 +7,10 @@ def index(request, pagename=''):
 	pg = Page.objects.get(permalink=pagename)
 	context = {
 		'title': pg.title,
-    	'context': pg.bodytext
+		'context': pg.bodytext, # note the end-of-line comma
+		'last_updated': pg.update_date,
+		'page_list': Page.objects.all(),
 	}
-	return render(request, 'base.html', context)
+	return render(request, 'pages/page.html', context)
 
 # Create your views here.
