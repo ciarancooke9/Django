@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
     'containers.computing.dcu.ie'
     ]
 USE_X_FORWARDED_HOST = True
-FORCE_SCRIPT_NAME = '/mcgettk3'
+FORCE_SCRIPT_NAME = '/cookec9'
 
 # Application definition
 
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'project02_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': '/vscode/db.sqlite3',
     }
 }
 

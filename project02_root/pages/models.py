@@ -26,7 +26,6 @@ class Actor(models.Model):
     def __str__(self):
         return self.name
 
-
 class Show(models.Model):
     title = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
@@ -35,6 +34,15 @@ class Show(models.Model):
     release = models.IntegerField(blank=False, default=datetime.datetime.now().year)
     rating = models.FloatField()
     seasons = models.IntegerField()
+
+    def display_genre(self):
+        return ', '.join(genre.genre for genre in self.genre.all()[:3])
+    display_genre.short_description = 'Genre'
+
+    def display_actor(self):
+        return ', '.join(actor.name for actor in self.actor.all()[:3])
+    display_actor.short_description = 'Actor'
+
     def __str__(self):
         return self.title
 
