@@ -30,9 +30,14 @@
 		</aside>
 		<section id="main">
 			{% block main_content %}
-				<h1>{{ title }}</h1>
 				{% autoescape off %}
-				<p>{{ content}}</p>
+				<h1>Welcome to the {{ title }} page!</h1>
+				<p>We're now using the page template.</p>
+				<ul>
+					<li><strong>Actors:</strong> {{ num_actor }}</li>
+					<li><strong>Tv Shows:</strong> {{ num_shows }}</li>
+					<li><strong>Genres:</strong> {{ num_genres }} </li>
+				</ul>
 				{% endautoescape %}
 			{% endblock main_content %}
 		</section>
