@@ -12,7 +12,12 @@
 {% block main_content %}
 	<h1>Welcome to the {{ title }} page!</h1>
 	<p>We're now using the page template.</p>
+	{% for show in tv_show_list %}
+	<ul>
+		<li>{{ show.title }}</li>
+		<li>{{ show.director }}</li>
+	</ul>
+	{% endfor %}
 	{% autoescape off %}
-	<p>{{ content }}</p>
 	{% endautoescape %}
 {% endblock main_content %}

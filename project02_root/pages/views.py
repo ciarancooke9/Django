@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from . models import Page
+from . models import Show, Genre, Actor
 
 def index(request, pagename=''):
 	pagename = '/' + pagename
@@ -10,6 +11,7 @@ def index(request, pagename=''):
 		'context': pg.bodytext, # note the end-of-line comma
 		'last_updated': pg.update_date,
 		'page_list': Page.objects.all(),
+		'tv_show_list': Show.objects.all(),
 	}
 	return render(request, 'pages/page.html', context)
 
