@@ -11,7 +11,12 @@
 
 {% block main_content %}
 	<h1>Welcome to the {{ title }} page!</h1>
-	<p>We're now using the page template.</p>
+	<p>Our Website consists of: </p>
+	<ul>
+	<li><strong>Actors:</strong> {{ num_actor }}</li>
+	<li><strong>Tv Shows:</strong> {{ num_shows }}</li>
+	<li><strong>Genres:</strong> {{ num_genres }} </li>
+	</ul>
 	{% for show in tv_show_list %}
 	<ul>
 		<li>{{ show.title }}</li>
