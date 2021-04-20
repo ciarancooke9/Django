@@ -10,6 +10,7 @@
 {% endblock sidenav %}
 
 {% block main_content %}
+<<<<<<< HEAD
 	<h1>Welcome to the {{ title }} page!</h1>
 	<p>Our Website consists of: </p>
 	<ul>
@@ -21,7 +22,24 @@
 	<ul>
 		<li>{{ show.title }}</li>
 		<li>{{ show.director }}</li>
+=======
+	{% if title == "Home" %}
+		<h2>Our page contains:</h2>
+		<ul>
+			<li><strong>Actors:</strong> {{ num_actor }}</li>
+			<li><strong>Tv Shows:</strong> {{ num_shows }}</li>
+			<li><strong>Genres:</strong> {{ num_genres }} </li>
+		</ul>
+		{% endif %}
+>>>>>>> b393110cc5fcd3660bd95234d161704cb0bc238d
 	</ul>
+	{% for show in tv_show_list %}
+		{% if show.display_genre == title %}
+		<ul>
+			<li>{{ show.title }}</li>
+			<li>{{ show.display_genre }}</li>
+		</ul>
+		{% endif %}
 	{% endfor %}
 	{% autoescape off %}
 	{% endautoescape %}
