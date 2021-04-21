@@ -55,10 +55,10 @@
 	{% endif %}
 
 	<!-- Content Row -->
+	<div class="row align-items-start">
 	{% for show in tv_show_list %}
 		{% if title in show.display_genre %} 
-		<div class="row justify-content-around">
-      			<div class="col">
+      			<div class="col-4">
         			<div class="card h-100">
           				<div class="card-body">
             				<h2 class="card-title">{{ show.title }}</h2>
@@ -71,12 +71,11 @@
 							</ul>
           				</div>
         	</div>
-      	</div>
-	</div>
+		  
+		</div>
 		{% endif %}
 	{% endfor %}
+</div>
 	{% endblock main_content %}
     <!-- /.row -->
-
-  </div>
   <!-- /.container -->
