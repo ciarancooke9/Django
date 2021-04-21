@@ -1,32 +1,59 @@
 {% extends "base.html" %}
-{% block title %}
-	{{ title }}
-{% endblock title %}
+<!-- Page Content -->
+<div class="container">
 
-{% block sidenav %}
-	{% for page in page_list %}
-		<li><a href="{% url 'index' %}{{ page.permalink|cut:'/' }}">{{ page.title }}</a></li>
-	{% endfor %}
-{% endblock sidenav %}
-
-{% block main_content %}
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+      <div class="col-lg-7">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="http://placehold.it/900x400" alt="">
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-5">
+        <h1 class="font-weight-light">Business Name or Tagline</h1>
+        <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it, but it makes a great use of the standard Bootstrap core components. Feel free to use this template for any project you want!</p>
+        <a class="btn btn-primary" href="#">Call to Action!</a>
+      </div>
+      <!-- /.col-md-4 -->
+    </div>
+    <!-- /.row -->
+	{% block main_content %}												
+    <!-- Call to Action Well -->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+      <div class="card-body">
+        <h2 class="text-white m-0"> {{ context }}</h2>
+      </div>
+    </div>
 	{% if title == "Home" %}
-		<h2>Our page contains:</h2>
+		<h3>Our page contains:</h3>
 		<ul>
 			<li><strong>Actors:</strong> {{ num_actor }}</li>
 			<li><strong>Tv Shows:</strong> {{ num_shows }}</li>
 			<li><strong>Genres:</strong> {{ num_genres }} </li>
 		</ul>
-		{% endif %}
-	</ul>
+	{% endif %}
+	<!-- Content Row -->
 	{% for show in tv_show_list %}
 		{% if show.display_genre == title %}
-		<ul>
-			<li>{{ show.title }}</li>
-			<li>{{ show.display_genre }}</li>
-		</ul>
+		<div class="row justify-content-around">
+      			<div class="col">
+        			<div class="card h-100">
+          				<div class="card-body">
+            				<h2 class="card-title">{{ show.title }}</h2>
+            				<ul class="card-text">
+								<li><b>Director:</b> {{ show.director }}</li>
+								<li><b>Actor(s):</b> {{ show.display_actor }}</li>
+								<li><b>Release:</b> {{ show.release }}</li>
+								<li><b>Rating:</b> {{ show.rating }}</li>
+								<li><b>Genre(s):</b> {{ show.display_genre }}</li>
+							</ul>
+          				</div>
+        	</div>
+      	</div>
+	</div>
 		{% endif %}
 	{% endfor %}
-	{% autoescape off %}
-	{% endautoescape %}
-{% endblock main_content %}
+	{% endblock main_content %}
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
