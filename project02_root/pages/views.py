@@ -1,7 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.conf import settings
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+
 from . models import Page
 from . models import Show, Genre, Actor
+
+@login_required(login_url=settings.FORCE_SCRIPT_NAME + '/accounts/login/')
+def addshow_view(request, *args, **kwargs):
+	return render(request, "addshow.html", {})
+
+@login_required(login_url=settings.FORCE_SCRIPT_NAME + '/accounts/login/')
+def addactor_view(request, *args, **kwargs):
+	return render(request, "addactor.html", {})
 
 def index(request, pagename=''):
 	pagename = '/' + pagename
