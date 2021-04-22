@@ -22,6 +22,7 @@ class Genre(models.Model):
 
 class Actor(models.Model):
     name = models.CharField(max_length=100)
+    image = models.ImageField(default = 'placeholder.png', blank = True)
 
     def __str__(self):
         return self.name
@@ -34,6 +35,7 @@ class Show(models.Model):
     release = models.IntegerField(blank=False, default=datetime.datetime.now().year)
     rating = models.FloatField()
     seasons = models.IntegerField()
+    picture = models.ImageField(default = 'placeholder.png', blank = True)
 
     def display_genre(self):
         return ', '.join(genre.genre for genre in self.genre.all()[:3])

@@ -60,6 +60,7 @@
 		{% if title in show.display_genre %} 
       			<div class="col-4">
         			<div class="card h-100">
+						<img src="{{ show.picture.url }}" class="card-img-top" alt="{{ show.title }}">
           				<div class="card-body">
             				<h2 class="card-title">{{ show.title }}</h2>
             				<ul class="card-text">

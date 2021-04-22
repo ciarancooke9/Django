@@ -57,7 +57,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'project02_site.urls'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -126,4 +126,5 @@ USE_TZ = True
 
 STATIC_SUFFIX = '/static/'
 STATIC_URL = FORCE_SCRIPT_NAME + STATIC_SUFFIX
-
+MEDIA_SUFFIX = '/media/'
+MEDIA_URL = FORCE_SCRIPT_NAME + MEDIA_SUFFIX

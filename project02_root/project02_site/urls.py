@@ -21,4 +21,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pages.urls')),
-] + static(settings.STATIC_SUFFIX, document_root=settings.STATIC_ROOT)
+]
+urlpatterns += static(settings.STATIC_SUFFIX, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_SUFFIX, document_root=settings.MEDIA_ROOT)

@@ -9,6 +9,8 @@ def index(request, pagename=''):
 	num_actor = Actor.objects.all().count()
 	num_shows = Show.objects.all().count()
 	num_genres = Genre.objects.all().count()
+	ac = Actor.objects.all()
+	sh = Show.objects.all()
 	context = {
 		'num_actor': num_actor,
 		'num_shows': num_shows,
