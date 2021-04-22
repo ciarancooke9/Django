@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
     'containers.computing.dcu.ie'
     ]
 USE_X_FORWARDED_HOST = True
-FORCE_SCRIPT_NAME = '/cookec9'
+FORCE_SCRIPT_NAME = '/mcgettk3'
 
 # Application definition
 
@@ -128,3 +128,5 @@ STATIC_SUFFIX = '/static/'
 STATIC_URL = FORCE_SCRIPT_NAME + STATIC_SUFFIX
 MEDIA_SUFFIX = '/media/'
 MEDIA_URL = FORCE_SCRIPT_NAME + MEDIA_SUFFIX
+
+LOGIN_REDIRECT_URL = '/'
