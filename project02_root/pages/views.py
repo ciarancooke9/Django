@@ -8,12 +8,24 @@ from . models import Page
 from . models import Show, Genre, Actor
 
 @login_required(login_url=settings.FORCE_SCRIPT_NAME + '/accounts/login/')
-def addshow_view(request, *args, **kwargs):
-	return render(request, "addshow.html", {})
+def addshow_view(request, pagename='addshow'):
+	pagename = '/' + pagename
+	pg = Page.objects.get(permalink=pagename)
+	context = {
+		'page_list': Page.objects.all(),
+		'context': pg.bodytext, # note the end-of-line comma
+	}
+	return render(request, "addshow.html", context)
 
 @login_required(login_url=settings.FORCE_SCRIPT_NAME + '/accounts/login/')
-def addactor_view(request, *args, **kwargs):
-	return render(request, "addactor.html", {})
+def addactor_view(request, pagename='addactor'):
+	pagename = '/' + pagename
+	pg = Page.objects.get(permalink=pagename)
+	context = {
+		'page_list': Page.objects.all(),
+		'context': pg.bodytext, # note the end-of-line comma
+	}
+	return render(request, "addactor.html", context)
 
 def index(request, pagename=''):
 	pagename = '/' + pagename
