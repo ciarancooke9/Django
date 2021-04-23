@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from . models import Page
 from . models import Show, Genre, Actor
+from . forms import Addactor_form
 
 @login_required(login_url=settings.FORCE_SCRIPT_NAME + '/accounts/login/')
 def addshow_view(request, pagename='addshow'):
@@ -20,11 +21,6 @@ def addshow_view(request, pagename='addshow'):
 
 @login_required(login_url=settings.FORCE_SCRIPT_NAME + '/accounts/login/')
 def addactor_view(request, pagename='addactor'):
-	print("Your form has been submitted!")
-	name = request.POST["name"]
-	image = request.POST["image"]
-	actor_info = Actor(name=name, image=image)
-	actor_info.save()
 
 	pagename = '/' + pagename
 	pg = Page.objects.get(permalink=pagename)
@@ -33,6 +29,30 @@ def addactor_view(request, pagename='addactor'):
 		'context': pg.bodytext, # note the end-of-line comma
 	}
 	return render(request, "addactor.html", context)
+
+def addactor_form_submitted(request):
+	submitted = False
+	your_name = request.POST["your_name"]
+	your_image = request.POST["your_image"]
+	if request.method == 'POST':
+		form = Addactor_form(request.POST)
+		if form.is_valid():
+			actor_info = Actor(name=your_name, image=your_image)
+			actor_info.save()
+			your_name = request.POST["your_name"]
+			your_image = request.POST["your_image"]
+
+			return HttpResponseRedirect(reverse('addactor') + '?submitted=True')
+	else:
+		form = Addactor_form()
+		if 'submitted' in request.GET:
+			submitted = True
+	context = {
+		'form': form,
+		'page_list': Page.objects.all(),
+		'submitted': submitted
+	}
+	return render(request, 'pages/addactor.html', context)
 
 def index(request, pagename=''):
 	pagename = '/' + pagename
@@ -55,12 +75,4 @@ def index(request, pagename=''):
 	}
 	return render(request, 'pages/page.html', context)
 
-def AddActorForm(request):
-	print("Your form has been submitted!")
-	name = request.POST["name"]
-	image = request.POST["image"]
-	actor_info = Actor(name=name, image=image)
-	actor_info.save()
-
-	return render(request, "addactor.html")
 # Create your views here.

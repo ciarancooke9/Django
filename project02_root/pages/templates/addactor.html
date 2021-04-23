@@ -19,16 +19,20 @@
     <!-- /.row -->
 	{% block main_content %}
 	<div class="contact-form medium-padding120">
-		<form class="contact-form" method="post" action="#">
-		{% csrf token %}
+		<form class="contact-form" method="post" action="/cookec9/addactor/" {% csrf_token %} >
+      {% csrf_token %}
 		<div class="row">
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-		<input name="name" class="input-standard-grey" placeholder="name">
+		<input name="your_name" class="input-standard-grey" placeholder="your_name">
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-		<input name="image" class="input-standard-grey" placeholder="image">
-		</div>
+		<input type="file" name="your_image" class="input-standard-grey" placeholder="your_image">
+    </div>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" value="Submit"></td>
+    </tr>
 		</form>
 	</div>
 	
