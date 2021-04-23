@@ -4,6 +4,7 @@ from django.conf import settings
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
+
 from . models import Page
 from . models import Show, Genre, Actor
 
@@ -19,6 +20,12 @@ def addshow_view(request, pagename='addshow'):
 
 @login_required(login_url=settings.FORCE_SCRIPT_NAME + '/accounts/login/')
 def addactor_view(request, pagename='addactor'):
+	print("Your form has been submitted!")
+	name = request.POST["name"]
+	image = request.POST["image"]
+	actor_info = Actor(name=name, image=image)
+	actor_info.save()
+
 	pagename = '/' + pagename
 	pg = Page.objects.get(permalink=pagename)
 	context = {
@@ -48,4 +55,12 @@ def index(request, pagename=''):
 	}
 	return render(request, 'pages/page.html', context)
 
+def AddActorForm(request):
+	print("Your form has been submitted!")
+	name = request.POST["name"]
+	image = request.POST["image"]
+	actor_info = Actor(name=name, image=image)
+	actor_info.save()
+
+	return render(request, "addactor.html")
 # Create your views here.
