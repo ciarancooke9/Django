@@ -44,6 +44,7 @@ def index(request, pagename=''):
 		'last_updated': pg.update_date,
 		'page_list': Page.objects.all(),
 		'tv_show_list': Show.objects.all(),
+		'actor_list': Actor.objects.all(),
 	}
 	return render(request, 'pages/page.html', context)
 

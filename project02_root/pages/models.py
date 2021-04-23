@@ -22,7 +22,7 @@ class Genre(models.Model):
 
 class Actor(models.Model):
     name = models.CharField(max_length=100)
-    image = models.ImageField(default = 'placeholder.png', blank = True)
+    image = models.ImageField(default = 'sopranos.png', blank = True)
 
     def __str__(self):
         return self.name
