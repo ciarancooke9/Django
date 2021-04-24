@@ -31,7 +31,7 @@ def addactor_view(request, pagename='addactor'):
 	}
 	submitted = False
 	if request.method == 'POST':
-		form = Addactor_form(request.POST)
+		form = Addactor_form(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
 			print(form.errors.as_data())
