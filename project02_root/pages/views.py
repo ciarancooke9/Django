@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.urls import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -28,21 +29,16 @@ def addactor_view(request, pagename='addactor'):
 		'page_list': Page.objects.all(),
 		'context': pg.bodytext, # note the end-of-line comma
 	}
-	return render(request, "addactor.html", context)
-
-def addactor_form_submitted(request):
 	submitted = False
-	your_name = request.POST["your_name"]
-	your_image = request.POST["your_image"]
 	if request.method == 'POST':
 		form = Addactor_form(request.POST)
 		if form.is_valid():
-			actor_info = Actor(name=your_name, image=your_image)
-			actor_info.save()
-			your_name = request.POST["your_name"]
-			your_image = request.POST["your_image"]
+			form.save()
+			print(form.errors.as_data())
 
 			return HttpResponseRedirect(reverse('addactor') + '?submitted=True')
+		else:
+			print(form.errors.as_data())
 	else:
 		form = Addactor_form()
 		if 'submitted' in request.GET:
@@ -50,9 +46,11 @@ def addactor_form_submitted(request):
 	context = {
 		'form': form,
 		'page_list': Page.objects.all(),
-		'submitted': submitted
+		'submitted': submitted,
 	}
-	return render(request, 'pages/addactor.html', context)
+	return render(request, "addactor.html", context)
+
+
 
 def index(request, pagename=''):
 	pagename = '/' + pagename
