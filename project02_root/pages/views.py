@@ -8,16 +8,32 @@ from django.contrib.auth.decorators import login_required
 
 from . models import Page
 from . models import Show, Genre, Actor
-from . forms import Addactor_form
+from . forms import Addactor_form, Addshow_form
 
 @login_required(login_url=settings.FORCE_SCRIPT_NAME + '/accounts/login/')
 def addshow_view(request, pagename='addshow'):
 	pagename = '/' + pagename
 	pg = Page.objects.get(permalink=pagename)
+	submitted = False
+	if request.method == 'POST':
+		form = Addshow_form(request.POST, request.FILES)
+		if form.is_valid():
+			form.save()
+			print(form.errors.as_data())
+
+			return HttpResponseRedirect(reverse('addshow') + '?submitted=True')
+		else:
+			print(form.errors.as_data())
+	else:
+		form = Addshow_form()
+		if 'submitted' in request.GET:
+			submitted = True
 	context = {
+		'form': form,
 		'page_list': Page.objects.all(),
-		'context': pg.bodytext, # note the end-of-line comma
+		'submitted': submitted,
 	}
+
 	return render(request, "addshow.html", context)
 
 @login_required(login_url=settings.FORCE_SCRIPT_NAME + '/accounts/login/')
