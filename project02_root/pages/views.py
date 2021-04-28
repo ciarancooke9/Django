@@ -63,6 +63,7 @@ def addactor_view(request, pagename='addactor'):
 		'form': form,
 		'page_list': Page.objects.all(),
 		'submitted': submitted,
+		'name': settings.FORCE_SCRIPT_NAME,
 	}
 	return render(request, "addactor.html", context)
 
