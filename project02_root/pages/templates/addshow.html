@@ -19,13 +19,14 @@
     <!-- /.row -->
 	{% block main_content %}
 	{% if submitted %}
-		<p class="success">
-		Your message was submitted successfully. Thank you.
-		</p>
+	<h3 class="success">
+		This Tv Show has been added successfully to our Index. Thank you.
+	</h3>
+	
 
 	{% else %}
 		<form action="" method="POST" enctype='multipart/form-data'>
-		<table>
+		<table class="table table-dark">
 			{{ form }}
 			<tr>
 				<td>&nbsp;</td>

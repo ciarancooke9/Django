@@ -30,8 +30,8 @@ class Actor(models.Model):
 class Show(models.Model):
     title = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
-    genre = models.ManyToManyField(Genre, related_name='genres', help_text='Select a genre for this show')
-    actor = models.ManyToManyField(Actor, related_name='actors', help_text='Select actors starring in this show this show')
+    genre = models.ManyToManyField(Genre, related_name='genres', help_text='Select a Genre for this Show.')
+    actor = models.ManyToManyField(Actor, related_name='actors', help_text='Select Actors starring in this Show or Add an Actor on our Add Actor form.')
     release = models.IntegerField(blank=False, default=datetime.datetime.now().year)
     rating = models.FloatField()
     seasons = models.IntegerField()
