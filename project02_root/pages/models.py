@@ -3,7 +3,7 @@ import datetime
 
 class Page(models.Model):
     title = models.CharField(max_length=60)
-    permalink = models.CharField(max_length=12, unique=True)
+    permalink = models.CharField(max_length=50, unique=True)
     update_date = models.DateTimeField('Last Updated')
     create_date = models.DateField('First Published', default = datetime.date.today)
     bodytext = models.TextField('Page Content', blank=True)
@@ -22,6 +22,7 @@ class Genre(models.Model):
 
 class Actor(models.Model):
     name = models.CharField(max_length=100)
+    image = models.ImageField(default = 'sopranos.png', blank = True)
 
     def __str__(self):
         return self.name
@@ -29,11 +30,12 @@ class Actor(models.Model):
 class Show(models.Model):
     title = models.CharField(max_length=100)
     director = models.CharField(max_length=100)
-    genre = models.ManyToManyField(Genre, related_name='genres', help_text='Select a genre for this show')
-    actor = models.ManyToManyField(Actor, related_name='actors', help_text='Select actors starring in this show this show')
+    genre = models.ManyToManyField(Genre, related_name='genres', help_text='Select a Genre for this Show.')
+    actor = models.ManyToManyField(Actor, related_name='actors', help_text='Select Actors starring in this Show or Add an Actor on our Add Actor form.')
     release = models.IntegerField(blank=False, default=datetime.datetime.now().year)
     rating = models.FloatField()
     seasons = models.IntegerField()
+    picture = models.ImageField(default = 'placeholder.png', blank = True)
 
     def display_genre(self):
         return ', '.join(genre.genre for genre in self.genre.all()[:3])
